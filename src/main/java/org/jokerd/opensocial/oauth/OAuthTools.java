@@ -9,12 +9,12 @@ import java.util.Scanner;
 public class OAuthTools {
 
     public static void main(String[] args) throws Exception {
-        String homeDir = System.getProperty("user.home");
-        String baseDir = homeDir + "/git/org.jokerd.opensocial/workdir";
+        String baseDir = "../../org.jokerd/workdir";
         Map<String, String> map = OAuthHelper.getParams(args);
         String network = map.get("network");
         if (network == null) {
-            network = "twitter.com";
+            map.put("scope", "read_stream,email");
+            network = "facebook.com";
         }
 
         OAuthHelper oauthHelper = FileBasedOAuthInfoStore.getOAuthHelper(
